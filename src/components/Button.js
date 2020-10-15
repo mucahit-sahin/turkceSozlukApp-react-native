@@ -1,22 +1,23 @@
-import {TouchableOpacity} from 'react-native';
-import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
 import {
+  position,
   color,
   space,
   size,
   compose,
   flexbox,
   layout,
-  borderRadius,
-} from 'styled-system';
+  borderRadius
+} from 'styled-system'
 
 const Button = styled(TouchableOpacity)(
-  compose(size, space, color, flexbox, layout, borderRadius),
-);
+  compose(size, space, color, flexbox, layout, borderRadius, position)
+)
 Button.defaultProps = {
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
-};
+  justifyContent: 'center'
+}
 
-export default Button;
+export default Button

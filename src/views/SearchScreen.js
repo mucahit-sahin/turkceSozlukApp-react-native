@@ -1,17 +1,23 @@
 import React from 'react'
 import { Button, View } from 'react-native'
-import BoxCenter from '../components/Box-center'
+import Search from '../components/Search'
 import Logo from '../components/icons/TdkLogo'
+import Box from '../components/Box'
 
 function SearchScreen({ navigation }) {
   return (
-    <BoxCenter>
+    <Box>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
       />
-      <Logo color="softRed" />
-    </BoxCenter>
+      <Box py={20}>
+        <Logo color="red" />
+      </Box>
+      <Box p={10}>
+        <Search />
+      </Box>
+    </Box>
   )
 }
 

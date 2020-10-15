@@ -3,6 +3,7 @@ import React from 'react'
 import Button from './Button'
 import { Bookmark, RotateCcw, Search } from './icons'
 import Box from './Box'
+import theme from '../utils/theme'
 
 function TabBar({ state, descriptors, navigation }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options
@@ -51,8 +52,12 @@ function TabBar({ state, descriptors, navigation }) {
             height={56}
             onPress={onPress}
           >
-            {label === 'Favorite' && <Bookmark />}
-            {label === 'History' && <RotateCcw />}
+            {label === 'Favorite' && (
+              <Bookmark color={theme.colors.textLight} />
+            )}
+            {label === 'History' && (
+              <RotateCcw color={theme.colors.textLight} />
+            )}
             <Box size={3} bg={isFocused ? 'red' : 'white'} mt={6} />
           </Button>
         )

@@ -15,7 +15,7 @@ const colors = {
   textLight: '#758291'
 }
 const radii = {
-  normal: 6,
+  normal: 8,
   full: 999
 }
 
