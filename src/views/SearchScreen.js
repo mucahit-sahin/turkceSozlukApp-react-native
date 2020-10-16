@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
-import {
-  Text,
-  ImageBackground,
-  StatusBar,
-  SafeAreaView,
-  Animated
-} from 'react-native'
+import { StatusBar, SafeAreaView, Animated, FlatList } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
+
 import Search from '../components/Search'
 import Logo from '../components/icons/TdkLogo'
 import Box from '../components/Box'
-import bg from '../assets/bg.jpg'
-import { useFocusEffect } from '@react-navigation/native'
+import Bg from '../components/bg'
+import {
+  CardContainer,
+  CardSummary,
+  CardTitle
+} from '../components/suggestion-card'
+import Text from '../components/Text'
 
-function SearchScreen() {
+function SearchScreen({ navigation }) {
   const [heroHeight] = React.useState(new Animated.Value(285))
 
   const [isSearchFocus, setSearchFocus] = useState(false)
 
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item 1',
+      summary: 'açıklama 1'
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item 2',
+      summary: 'açıklama 2'
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item 3',
+      summary: 'açıklama 3'
+    }
+  ]
   React.useEffect(() => {
     if (isSearchFocus) {
       Animated.timing(heroHeight, {
@@ -46,16 +64,12 @@ function SearchScreen() {
         height={heroHeight}
       >
         {!isSearchFocus && (
-          <Box
-            as={ImageBackground}
-            source={bg}
-            style={{ width: '100%', height: '100%' }}
-          >
+          <Bg>
             {/* logo */}
             <Box flex={1} alignItems="center" justifyContent="center">
               <Logo width={120} color="white" />
             </Box>
-          </Box>
+          </Bg>
         )}
 
         {/* search */}
@@ -71,14 +85,43 @@ function SearchScreen() {
       </Box>
 
       {/* content */}
-      <Box flex={1} bg="white" pt={isSearchFocus ? 0 : 26}>
+      <Box flex={1} bg="softRed" pt={isSearchFocus ? 0 : 26}>
         {isSearchFocus ? (
           <Box p={30} flex={1}>
             <Text>History</Text>
           </Box>
         ) : (
-          <Box p={30} flex={1}>
-            <Text>Öneri</Text>
+          <Box px={16} py={40} flex={1}>
+            <Box>
+              <Text color="textLight">Bir deyim</Text>
+              <CardContainer
+                mt={10}
+                onPress={() => navigation.navigate('Details')}
+              >
+                <CardTitle>on para</CardTitle>
+                <CardSummary>çok az para</CardSummary>
+              </CardContainer>
+            </Box>
+            <Box mt={30}>
+              <Text color="textLight">Bir deyim - Atasözü</Text>
+              <CardContainer mt={10}>
+                <CardTitle>siyem siyem ağlamak</CardTitle>
+                <CardSummary>ince ince, hafif hafif</CardSummary>
+              </CardContainer>
+            </Box>
+
+            {/*<FlatList
+              data={DATA}
+              renderItem={({ item }) => (
+                <Box py={5}>
+                  <CardContainer>
+                    <CardTitle>{item.title}</CardTitle>
+                    <CardSummary>{item.summary}</CardSummary>
+                  </CardContainer>
+                </Box>
+              )}
+              keyExtractor={(item) => item.id}
+              />*/}
           </Box>
         )}
       </Box>
