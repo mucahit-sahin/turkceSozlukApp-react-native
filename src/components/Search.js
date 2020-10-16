@@ -13,7 +13,7 @@ function Search({ onChangeFocus }) {
 
   React.useEffect(() => {
     onChangeFocus(isFocus)
-  }, [isFocus])
+  }, [isFocus, onChangeFocus])
 
   const onCancel = () => {
     setFocus(false)
