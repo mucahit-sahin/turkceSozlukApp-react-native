@@ -1,4 +1,3 @@
-import { View } from 'react-native'
 import React from 'react'
 import Button from './Button'
 import { Bookmark, RotateCcw, Search } from './icons'
@@ -13,7 +12,16 @@ function TabBar({ state, descriptors, navigation }) {
   }
 
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <Box
+      pb={10}
+      bg="white"
+      flexDirection="row"
+      style={{
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 24
+      }}
+    >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]
         const label =
@@ -53,16 +61,25 @@ function TabBar({ state, descriptors, navigation }) {
             onPress={onPress}
           >
             {label === 'Favorite' && (
-              <Bookmark color={theme.colors.textLight} />
+              <Bookmark
+                color={isFocused ? theme.colors.red : theme.colors.textLight}
+              />
             )}
             {label === 'History' && (
-              <RotateCcw color={theme.colors.textLight} />
+              <RotateCcw
+                color={isFocused ? theme.colors.red : theme.colors.textLight}
+              />
             )}
-            <Box size={3} bg={isFocused ? 'red' : 'white'} mt={6} />
+            <Box
+              borderRadius="normal"
+              size={3}
+              bg={isFocused ? 'red' : 'white'}
+              mt={6}
+            />
           </Button>
         )
       })}
-    </View>
+    </Box>
   )
 }
 

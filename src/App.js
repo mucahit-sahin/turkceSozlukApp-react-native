@@ -18,7 +18,7 @@ const HomeStack = createStackNavigator()
 
 function SearchView() {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator headerMode="none">
       <HomeStack.Screen name="Home" component={SearchScreen} />
       <HomeStack.Screen name="Details" component={DetailView} />
     </HomeStack.Navigator>

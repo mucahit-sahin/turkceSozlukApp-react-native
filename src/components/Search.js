@@ -2,13 +2,18 @@ import React, { useState } from 'react'
 import Box from './Box'
 import Input from '../components/Input'
 import { Search as SearchIcon, Close } from './icons'
-import { Text, Keyboard } from 'react-native'
+import { Keyboard } from 'react-native'
 import Button from './Button'
 import theme from '../utils/theme'
+import Text from './Text'
 
-function Search() {
+function Search({ onChangeFocus }) {
   const [isFocus, setFocus] = useState(false)
   const [value, setValue] = useState('')
+
+  React.useEffect(() => {
+    onChangeFocus(isFocus)
+  }, [isFocus])
 
   const onCancel = () => {
     setFocus(false)
@@ -46,7 +51,12 @@ function Search() {
           onChangeText={(text) => setValue(text)}
         />
         {value.length > 0 && (
-          <Button onPress={onClear} position="absolute" right={16} top={14}>
+          <Button
+            onPress={() => onClear()}
+            position="absolute"
+            right={16}
+            top={14}
+          >
             <Close color={theme.colors.textDark} />
           </Button>
         )}
@@ -55,7 +65,7 @@ function Search() {
         </Button>
       </Box>
       {isFocus && (
-        <Button onPress={onCancel} px={15} height={52}>
+        <Button onPress={() => onCancel()} px={15} height={52}>
           <Text>Vazgeç</Text>
         </Button>
       )}
