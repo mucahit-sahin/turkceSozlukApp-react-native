@@ -3,6 +3,7 @@ import { StatusBar, SafeAreaView } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import Text from '../components/Text'
+import Box from '../components/Box'
 
 function HistoryView() {
   useFocusEffect(
