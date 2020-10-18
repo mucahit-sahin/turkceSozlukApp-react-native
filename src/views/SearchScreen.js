@@ -128,7 +128,9 @@ function SearchScreen({ navigation }) {
               <Text color="textLight">Bir deyim</Text>
               <CardContainer
                 mt={10}
-                onPress={() => navigation.navigate('Details')}
+                onPress={() =>
+                  navigation.navigate('Details', { title: 'on para' })
+                }
               >
                 <CardTitle>on para</CardTitle>
                 <CardSummary>çok az para</CardSummary>
@@ -136,7 +138,14 @@ function SearchScreen({ navigation }) {
             </Box>
             <Box mt={30}>
               <Text color="textLight">Bir deyim - Atasözü</Text>
-              <CardContainer mt={10}>
+              <CardContainer
+                mt={10}
+                onPress={() =>
+                  navigation.navigate('Details', {
+                    title: 'siyem siyem ağlamak'
+                  })
+                }
+              >
                 <CardTitle>siyem siyem ağlamak</CardTitle>
                 <CardSummary>ince ince, hafif hafif</CardSummary>
               </CardContainer>

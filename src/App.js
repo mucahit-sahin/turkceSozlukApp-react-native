@@ -12,15 +12,56 @@ import { SafeAreaView } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 import Box from './components/Box'
 import theme from './utils/theme'
+import { Left, More } from './components/icons'
+import Button from './components/Button'
 
 const Tab = createBottomTabNavigator()
 const HomeStack = createStackNavigator()
 
 function SearchView() {
   return (
-    <HomeStack.Navigator headerMode="none">
-      <HomeStack.Screen name="Home" component={SearchScreen} />
-      <HomeStack.Screen name="Details" component={DetailView} />
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Home"
+        component={SearchScreen}
+        options={() => {
+          return {
+            headerMode: 'none',
+            header: () => {}
+          }
+        }}
+      />
+      <HomeStack.Screen
+        name="Details"
+        component={DetailView}
+        options={({ route, navigation }) => {
+          return {
+            title: route.params && route.params.title,
+            headerStyle: {
+              backgroundColor: theme.colors.softRed,
+              shadowColor: 'transparent'
+            },
+            headerLeft: () => (
+              <Button
+                height="100%"
+                px={20}
+                onPress={() => navigation.navigate('Home')}
+              >
+                <Left color={theme.colors.textDark} />
+              </Button>
+            ),
+            headerRight: () => (
+              <Button
+                height="100%"
+                px={20}
+                onPress={() => navigation.navigate('Home')}
+              >
+                <More color={theme.colors.textDark} />
+              </Button>
+            )
+          }
+        }}
+      />
     </HomeStack.Navigator>
   )
 }
