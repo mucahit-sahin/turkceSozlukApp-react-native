@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { StatusBar, SafeAreaView, Animated, FlatList } from 'react-native'
+import {
+  StatusBar,
+  SafeAreaView,
+  Animated,
+  FlatList,
+  ActivityIndicator
+} from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import Search from '../components/Search'
@@ -20,6 +26,13 @@ function SearchScreen({ navigation }) {
   const [bgOpacity] = React.useState(new Animated.Value(1))
   const [heroHeight] = React.useState(new Animated.Value(HERO_HEIGHT))
   const [isSearchFocus, setSearchFocus] = useState(false)
+  const [homeData, setHomeData] = React.useState(null)
+
+  const getHomeData = async () => {
+    const response = await fetch('https://sozluk.gov.tr/icerik')
+    const data = await response.json()
+    setHomeData(data)
+  }
 
   const DATA = [
     {
@@ -38,6 +51,10 @@ function SearchScreen({ navigation }) {
       summary: 'açıklama 3'
     }
   ]
+
+  React.useEffect(() => {
+    getHomeData()
+  }, [])
 
   React.useEffect(() => {
     if (isSearchFocus) {
@@ -125,15 +142,21 @@ function SearchScreen({ navigation }) {
         ) : (
           <Box px={16} py={40} flex={1}>
             <Box>
-              <Text color="textLight">Bir deyim</Text>
+              <Text color="textLight">Bir kelime</Text>
               <CardContainer
                 mt={10}
                 onPress={() =>
                   navigation.navigate('Details', { title: 'on para' })
                 }
               >
-                <CardTitle>on para</CardTitle>
-                <CardSummary>çok az para</CardSummary>
+                {homeData ? (
+                  <>
+                    <CardTitle>{homeData?.kelime[0].madde}</CardTitle>
+                    <CardSummary>{homeData?.kelime[0].anlam}</CardSummary>
+                  </>
+                ) : (
+                  <ActivityIndicator color="red" />
+                )}
               </CardContainer>
             </Box>
             <Box mt={30}>
@@ -146,8 +169,14 @@ function SearchScreen({ navigation }) {
                   })
                 }
               >
-                <CardTitle>siyem siyem ağlamak</CardTitle>
-                <CardSummary>ince ince, hafif hafif</CardSummary>
+                {homeData ? (
+                  <>
+                    <CardTitle>{homeData?.atasoz[0].madde}</CardTitle>
+                    <CardSummary>{homeData?.atasoz[0].anlam}</CardSummary>
+                  </>
+                ) : (
+                  <ActivityIndicator color="red" />
+                )}
               </CardContainer>
             </Box>
 

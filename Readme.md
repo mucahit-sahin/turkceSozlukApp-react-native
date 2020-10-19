@@ -14,3 +14,4 @@ Adem İlter hocamızın Türkçe Sözlük tasarımı yarışında 1. olan tasar�
 - react-navigation/bottom-tabs
 - react-native-svg
 - @svgr/cli
+- @babel/plugin-proposal-optional-chaining
