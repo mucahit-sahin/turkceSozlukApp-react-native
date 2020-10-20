@@ -1,30 +1,24 @@
 import React from 'react'
-import Text from './Text'
+import { ActivityIndicator } from 'react-native'
 
 import Box from './Box'
-import Button from './Button'
+import { CardContainer, CardSummary, CardTitle } from './card'
+import Text from './Text'
 
-export function CardContainer({ children, ...props }) {
+export function SuggestionCard({ title, onPress, data, ...props }) {
   return (
-    <Button bg="white" borderRadius="normal" py={16} px={12} {...props}>
-      <Box flex={1} borderLeftWidth={3} borderLeftColor="light" pl={12}>
-        {children}
-      </Box>
-    </Button>
-  )
-}
-export function CardTitle({ children }) {
-  return (
-    <Text fontSize={18} fontWeight="bold">
-      {children}
-    </Text>
-  )
-}
-
-export function CardSummary({ children }) {
-  return (
-    <Text color="textMedium" fontSize={14} mt={6}>
-      {children}
-    </Text>
+    <Box {...props}>
+      <Text color="textLight">{title}</Text>
+      <CardContainer mt={10} onPress={onPress}>
+        {data ? (
+          <>
+            <CardTitle>{data.madde}</CardTitle>
+            <CardSummary>{data.anlam}</CardSummary>
+          </>
+        ) : (
+          <ActivityIndicator color="red" />
+        )}
+      </CardContainer>
+    </Box>
   )
 }
