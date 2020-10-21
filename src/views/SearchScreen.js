@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import { StatusBar, SafeAreaView, Animated } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
-import Search from '../components/Search'
-import Logo from '../components/icons/TdkLogo'
 import Box from '../components/Box'
-import Bg from '../components/bg'
 import { SuggestionCard } from '../components/suggestion-card'
 import SearchHistoryList from '../components/search-history-list'
 import HomeSearch from '../components/home-search'
@@ -65,14 +62,22 @@ function SearchScreen({ navigation }) {
             <SuggestionCard
               data={homeData?.kelime[0]}
               title="Bir kelime"
-              onPress={() => navigation.navigate('Details')}
+              onPress={() =>
+                navigation.navigate('Details', {
+                  keyword: homeData?.kelime[0].madde
+                })
+              }
             />
 
             <SuggestionCard
               data={homeData?.atasoz[0]}
               title="Bir deyim - Atasözü"
               mt={30}
-              onPress={() => navigation.navigate('Details')}
+              onPress={() =>
+                navigation.navigate('Details', {
+                  keyword: homeData?.atasoz[0].madde
+                })
+              }
             />
 
             {/*<FlatList
