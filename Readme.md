@@ -16,8 +16,9 @@ Adem İlter hocamızın Türkçe Sözlük tasarımı yarışında 1. olan tasar�
 - @svgr/cli
 - @babel/plugin-proposal-optional-chaining
 
+
 ## Screenshoots
 
-![ss1](https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshots/screen1.png)
-![ss2](https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshots/screen2.png)
-![ss3](https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshots/screen3.png)
+<img src="https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshot/screen1.png" width="40%">.
+<img src="https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshot/screen2.png" width="40%">.
+<img src="https://github.com/mucahit-sahin/turkceSozlukApp-react-native/blob/master/screenshot/screen3.png" width="40%">.
